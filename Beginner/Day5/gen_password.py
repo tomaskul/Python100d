@@ -11,7 +11,7 @@ def get_random_elements_from_collection(number, collection):
         result.append(random.choice(collection))
         number -= 1
     
-    return ''.join(result)
+    return result
 
 print("Welcome to the PyPassword Generator!")
 nr_letters= int(input("How many letters would you like in your password?\n")) 
@@ -20,17 +20,22 @@ nr_numbers = int(input(f"How many numbers would you like?\n"))
 
 #Eazy Level - Order not randomised:
 #e.g. 4 letter, 2 symbol, 2 number = JduE&!91
-letters = get_random_elements_from_collection(nr_letters, letters)
-symbols = get_random_elements_from_collection(nr_symbols, symbols)
-numbers = get_random_elements_from_collection(nr_numbers, numbers)
-easy_password = f"{letters}{symbols}{numbers}"
-print(easy_password)
+easy_password = get_random_elements_from_collection(nr_letters, letters)
+easy_password.extend(get_random_elements_from_collection(nr_symbols, symbols))
+easy_password.extend(get_random_elements_from_collection(nr_numbers, numbers))
+print(''.join(easy_password))
 
 #Hard Level - Order of characters randomised:
 #e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
-hard_password = [easy_password[0]]
-for index in range(1, len(easy_password)):
-    rand_position = random.randint(0, len(hard_password)-1)
-    hard_password.insert(rand_position, easy_password[index])
 
+#Initial attempt.
+#hard_password = [easy_password[0]]
+#for index in range(1, len(easy_password)):
+#    rand_position = random.randint(0, len(hard_password)-1)
+#    hard_password.insert(rand_position, easy_password[index])
+
+#Based on course guidance.
+hard_password = easy_password
+random.shuffle(hard_password)
+random.shuffle(hard_password)
 print(''.join(hard_password))
