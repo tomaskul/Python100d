@@ -23,8 +23,14 @@ nr_numbers = int(input(f"How many numbers would you like?\n"))
 letters = get_random_elements_from_collection(nr_letters, letters)
 symbols = get_random_elements_from_collection(nr_symbols, symbols)
 numbers = get_random_elements_from_collection(nr_numbers, numbers)
-print(f"{letters}{symbols}{numbers}")
+easy_password = f"{letters}{symbols}{numbers}"
+print(easy_password)
 
 #Hard Level - Order of characters randomised:
 #e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
+hard_password = [easy_password[0]]
+for index in range(1, len(easy_password)):
+    rand_position = random.randint(0, len(hard_password)-1)
+    hard_password.insert(rand_position, easy_password[index])
 
+print(''.join(hard_password))
