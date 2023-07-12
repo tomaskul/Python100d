@@ -1,9 +1,12 @@
 import data
 from question_model import Question
+from quiz_brain import QuizBrain
 
 questions = []
-
 for item in data.question_data:
     q = Question(text=item["text"], answer=item["answer"])
     questions.append(q)
-    print(f"Q: {q.text}\tA: {q.answer}")
+
+quiz_brain = QuizBrain(question_list=questions)
+active_question = quiz_brain.next_question()
+answer = input(f"Q: {active_question.text} (True/False)?:\t")
