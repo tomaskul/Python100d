@@ -8,4 +8,6 @@ for item in data.question_data:
     questions.append(q)
 
 quiz_brain = QuizBrain(question_list=questions)
-quiz_brain.next_question()
+
+while quiz_brain.still_has_questions():
+    quiz_brain.next_question()
