@@ -8,5 +8,4 @@ for item in data.question_data:
     questions.append(q)
 
 quiz_brain = QuizBrain(question_list=questions)
-active_question = quiz_brain.next_question()
-answer = input(f"Q: {active_question.text} (True/False)?:\t")
+quiz_brain.next_question()
