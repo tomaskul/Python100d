@@ -41,10 +41,11 @@ def drawManySides():
         turtle.pencolor(random.choice(colours))
         for _ in range(sides):
             turtle.forward(100.0)
-            turtle.right(angle)
+            turtle.right(float(angle))
 
     screen = t.Screen()
     screen.exitonclick()
+
 
 def randomRgbColour():
     '''Returns a tuple of a random rgb colour, i.e., (r, g, b).'''
