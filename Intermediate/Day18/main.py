@@ -19,10 +19,10 @@ def drawManySides(turtle):
     colours = ["cornflower blue", "deep pink", "brown", "olive drab", "moccasin", "dark salmon"]
     for sides in range(3, 11):
         total_rotation = 0
+        angle = 360 / sides
         turtle.pencolor(random.choice(colours))
         while total_rotation < 360:
             turtle.forward(100.0)
-            angle = 360 / sides
             turtle.right(angle=angle)
             total_rotation += angle
 
