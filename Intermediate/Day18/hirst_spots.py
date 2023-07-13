@@ -1,4 +1,7 @@
 import colorgram
+import turtle as t
+import random
+
 
 def get_colors_from(image_path, colour_count):
     rgb_colours = []
@@ -17,3 +20,31 @@ filtered_colours = [(173, 164, 153), (229, 223, 225),
                     (164, 207, 186), (51, 40, 44), (56, 44, 37), (39, 55, 48), (25, 90, 81), (111, 118, 156), 
                     (124, 38, 46), (17, 92, 101), (118, 43, 36), (166, 201, 210), (38, 62, 98)]
 
+def draw_hirst_image():
+    t.colormode(255)
+    turtle = t.Turtle()
+    turtle.hideturtle()
+    turtle.speed(9)
+
+    turtle.penup()
+    turtle.goto(-250.00,-250.00)
+
+    spacing = 50
+    for _ in range(10):
+        row_start_position = turtle.position()
+
+        for _ in range(10):
+            turtle.pendown()
+            turtle.dot(20, random.choice(filtered_colours))
+            turtle.penup()
+            turtle.forward(spacing)
+
+        turtle.penup()
+        turtle.goto(row_start_position[0], row_start_position[1]+spacing)
+            
+    
+    screen = t.Screen()
+    screen.exitonclick()
+
+
+draw_hirst_image()
