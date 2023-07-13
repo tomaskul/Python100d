@@ -1,13 +1,13 @@
 import turtle as t
-from shape_challenges import randomRgbColour
+from shape_challenges import random_rgb_colour
 
-def drawSpirograph():
+def draw_spirograph():
     t.colormode(255)
     turtle = t.Turtle()
     turtle.speed("fastest")
 
     for _ in range(72):
-        turtle.pencolor(randomRgbColour())
+        turtle.pencolor(random_rgb_colour())
         turtle.circle(100)
         turtle.left(5.0)
 

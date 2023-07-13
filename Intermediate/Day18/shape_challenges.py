@@ -1,7 +1,7 @@
 import turtle as t
 import random
 
-def drawSquare(side_length):
+def draw_square(side_length):
     '''Draws a square of length sides.'''
     turtle = t.Turtle()
     turtle.shape("turtle")
@@ -13,7 +13,7 @@ def drawSquare(side_length):
     screen.exitonclick()
 
 
-def drawDashedLine(line_distance, dash_length):
+def draw_dashed_line(line_distance, dash_length):
     '''Draws a dashed line of specified distance and gap lenghts.'''
     turtle = t.Turtle()
     turtle.shape("turtle")
@@ -30,7 +30,7 @@ def drawDashedLine(line_distance, dash_length):
     screen.exitonclick()
 
 
-def drawManySides():
+def draw_many_sides():
     '''Draws shapes from triangle to dekagon, in different colours, on top of one another.'''
     turtle = t.Turtle()
     turtle.shape("turtle")
@@ -47,7 +47,7 @@ def drawManySides():
     screen.exitonclick()
 
 
-def randomRgbColour():
+def random_rgb_colour():
     '''Returns a tuple of a random rgb colour, i.e., (r, g, b).'''
     r = random.randint(0, 255)
     g = random.randint(0, 255)
@@ -55,7 +55,7 @@ def randomRgbColour():
     return (r, g, b)
 
 
-def drawRandomWalk(step_count):
+def draw_random_walk(step_count):
     '''Draws a random walk over specified number of steps.'''
     t.colormode(255)
     turtle = t.Turtle()
@@ -66,16 +66,10 @@ def drawRandomWalk(step_count):
     turns = [0.0, 90.0, 180.0, 270.0]
 
     for _ in range(step_count):
-        turtle.pencolor(randomRgbColour())
+        turtle.pencolor(random_rgb_colour())
         turn_angle = random.choice(turns)
         turtle.setheading(turn_angle)
         turtle.forward(25)
     
     screen = t.Screen()
     screen.exitonclick()
-
-
-#drawSquare(distance=50.0)
-#drawDashedLine(line_distance=200, dash_length=15)
-#drawManySides()
-#drawRandomWalk(200)
