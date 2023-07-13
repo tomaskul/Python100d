@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+import turtle as t
 import random
 
 def drawSquare(turtle, distance):
@@ -26,31 +26,38 @@ def drawManySides(turtle):
             turtle.forward(100.0)
             turtle.right(angle)
 
+def randomRgbColour():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    return (r, g, b)
+
 
 def drawRandomWalk(turtle, step_count):
-    colours = ["cornflower blue", "deep pink", "brown", "olive drab", "moccasin", "dark salmon"]
-    turns = [0.0, 90.0, 180.0, 360.0]
+    #colours = ["CornflowerBlue", "DarkOrchid", "IndianRed", "DeepPink", "LightSeaGreen", "olive drab", "moccasin", "dark salmon"]
+    turns = [0.0, 90.0, 180.0, 270.0]
 
     turtle.hideturtle()
     turtle.pen(pensize=15)
     turtle.speed(8)
 
     for _ in range(step_count):
-        turtle.pencolor(random.choice(colours))
+        turtle.pencolor(randomRgbColour())
         turn_angle = random.choice(turns)
-        turtle.right(turn_angle)
+        turtle.setheading(turn_angle)
         turtle.forward(25)
 
 
-turtle = Turtle()
-turtle.shape("turtle")
+turtle = t.Turtle()
+t.colormode(255)
+#turtle.shape("turtle")
 
 
 #drawSquare(turtle=turtle, distance=50.0)
 #drawDashedLine(turtle, line_distance=200, dash_length=15)
 #drawManySides(turtle)
-drawRandomWalk(turtle, 100)
+drawRandomWalk(turtle, 200)
 
 
-screen = Screen()
+screen = t.Screen()
 screen.exitonclick()
