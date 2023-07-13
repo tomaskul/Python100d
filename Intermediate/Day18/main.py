@@ -18,13 +18,11 @@ def drawDashedLine(turtle, line_distance, dash_length):
 def drawManySides(turtle):
     colours = ["cornflower blue", "deep pink", "brown", "olive drab", "moccasin", "dark salmon"]
     for sides in range(3, 11):
-        total_rotation = 0
         angle = 360 / sides
         turtle.pencolor(random.choice(colours))
-        while total_rotation < 360:
+        for _ in range(sides):
             turtle.forward(100.0)
-            turtle.right(angle=angle)
-            total_rotation += angle
+            turtle.right(angle)
 
 turtle = Turtle()
 turtle.shape("turtle")
