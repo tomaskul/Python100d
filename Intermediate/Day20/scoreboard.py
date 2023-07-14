@@ -12,7 +12,11 @@ class Scoreboard(Turtle):
 
     def write_score(self):
         self.clear()
-        self.write(arg=f"SCORE: {self.score}", move=False, align="center", font=("Helvetica", 12, "normal"))
+        self.write(arg=f"Score: {self.score}", move=False, align="center", font=("Helvetica", 12, "normal"))
+
+    def game_over(self):
+        self.home()
+        self.write(arg=f"GAME OVER", move=False, align="center", font=("Helvetica", 12, "normal"))
 
     def increment_score(self):
         self.score += 1
