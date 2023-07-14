@@ -3,23 +3,32 @@ import turtle as t
 def etch_a_sketch():
     turtle = t.Turtle()
 
-    def forward(x, y):
+    def forward():
         turtle.forward(10.0)
     
-    def backwards(x, y):
+    def backwards():
         turtle.backward(10.0)
 
-    def turnLeft(x,y):
+    def turn_counter_clockwise():
         turtle.left(5.0)
     
-    def turnRight(x,y):
+    def turn_clockwise():
         turtle.right(5.0)
 
-
-    turtle.onclick(fun=forward, btn="w")
-    turtle.onclick(fun=backwards, btn="s")
+    def clear():
+        turtle.clear()
+        turtle.penup()
+        turtle.home()
+        turtle.pendown()
 
     screen = t.Screen()
+    screen.listen()
+    screen.onkey(fun=clear, key="c")
+    screen.onkey(fun=forward, key="w")
+    screen.onkey(fun=backwards, key="s")
+    screen.onkey(fun=turn_counter_clockwise, key="a")
+    screen.onkey(fun=turn_clockwise, key="d")
     screen.exitonclick()
+
 
 etch_a_sketch()
