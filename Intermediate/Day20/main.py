@@ -1,23 +1,21 @@
-import turtle as t
+from turtle import Screen
+from snake import Snake
+import time
 
-class Snake:
-    def __init__(self):
-        body = []
-        for index in range(3):
-            square = t.Turtle(shape="square")
-            square.penup()
-            square.color("white")
-            square.setx(square.pos()[0] - ((index + 1) * 20))
-            body.append(square)
-
-        self.body = body
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.bgcolor("black")
+screen.title("Python Snake Game")
+screen.tracer(0)
 
 
 snake = Snake()
 
-screen = t.Screen()
-screen.setup(width=600, height=600)
-screen.bgcolor("black")
-screen.title("Python Snake Game")
+game_is_on = True
+while game_is_on:
+    screen.update()
+    time.sleep(0.1)
+    snake.move()
+
 
 screen.exitonclick()
