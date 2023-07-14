@@ -47,6 +47,6 @@ class Snake:
             self.head.setheading(RIGHT)
 
     def eat(self):
-        last_x = self.body[len(self.body)-1].xcor()
-        last_y = self.body[len(self.body)-1].ycor()
+        last_x = self.body[-1].xcor()
+        last_y = self.body[-1].ycor()
         self.add_segment(last_x, last_y)
