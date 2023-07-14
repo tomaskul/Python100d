@@ -9,16 +9,19 @@ RIGHT = 0
 
 class Snake:
     def __init__(self):
-        body = []
+        self.body = []
         for index in range(3):
-            square = Turtle(shape="square")
-            square.penup()
-            square.color("white")
-            square.setx(square.pos()[0] - ((index + 1) * MOVE_DISTANCE))
-            body.append(square)
+            self.add_segment(x_pos=0 - ((index + 1) * MOVE_DISTANCE), y_pos=0)
+        
+        self.head = self.body[0]
 
-        self.body = body
-        self.head = body[0]
+    def add_segment(self, x_pos, y_pos):
+        segment = Turtle(shape="square")
+        segment.penup()
+        segment.color("white")
+        segment.setx(x_pos)
+        segment.sety(y_pos)
+        self.body.append(segment)
 
     def move(self):
         for seg_id in range(len(self.body) -1, 0, -1):
@@ -42,3 +45,8 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    def eat(self):
+        last_x = self.body[len(self.body)-1].xcor()
+        last_y = self.body[len(self.body)-1].ycor()
+        self.add_segment(last_x, last_y)
