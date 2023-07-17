@@ -3,12 +3,21 @@
 #Replace the [name] placeholder with the actual name.
 #Save the letters in the folder "ReadyToSend".
 
-starting_letter = ""
-with open("Intermediate/Day24/Input/Letters/starting_letter.txt") as f:
-    starting_letter = f.read()
+NAME_PLACEHOLDER_TOKEN = "[name]"
 
-print(f"Starting letter:\n\n{starting_letter}")
+
+
+invited_names = []
+with open("Intermediate/Day24/Input/Names/invited_names.txt") as f:
+    invited_names = f.readlines()
+
+for name in invited_names:
+    letter_lines = []
+    with open("Intermediate/Day24/Input/Letters/starting_letter.txt") as f:
+        letter_lines = f.readlines()
     
-#Hint1: This method will help you: https://www.w3schools.com/python/ref_file_readlines.asp
-    #Hint2: This method will also help you: https://www.w3schools.com/python/ref_string_replace.asp
-        #Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
+    plain_name = name.strip('\n')
+    letter_lines[0] = letter_lines[0].replace(NAME_PLACEHOLDER_TOKEN, plain_name)
+
+    with open(f"Intermediate/Day24/Output/ReadyToSend/letter_for_{plain_name}.txt", mode="w") as f:
+        f.writelines(letter_lines)
