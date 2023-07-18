@@ -16,6 +16,8 @@ while game_is_on:
     answer_state = screen.textinput(title=f"{score}/50 States correct (Remaining tries: {tries})", prompt="What's another state's name?").title()
     if answer_state == "Exit":
         game_is_on = False
+        missing_states_df = pandas.DataFrame([state_name for state_name in states_list if state_name not in answered_state_names])
+        missing_states_df.to_csv("Intermediate/Day25/states_to_learn.csv")
         pass
 
     if answer_state in states_list:
