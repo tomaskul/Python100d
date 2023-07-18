@@ -13,7 +13,7 @@ tries = 3
 score = 0
 answered_state_names = []
 while game_is_on:
-    answer_state = screen.textinput(title=f"{score}/50 States correct (Remaining tries: {tries})", prompt="What's another state's name?")
+    answer_state = screen.textinput(title=f"{score}/50 States correct (Remaining tries: {tries})", prompt="What's another state's name?").title()
     if answer_state in states_list:
         if answer_state in answered_state_names:
             pass
