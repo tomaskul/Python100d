@@ -25,17 +25,17 @@ canvas.create_text(WINDOW_WIDTH/2, 150, text=wg.SPANISH, font=("Arial", 40, "ita
 canvas.create_text(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, text=word[wg.SPANISH], font=("Arial", 60, "bold"), tags=("word"))
 canvas.grid(row=0, column=0, columnspan=2)
 
-def updateWord():
+def update_word():
     canvas.delete("word")
     word = word_gen.nextWord()
     canvas.create_text(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, text=word[wg.SPANISH], font=("Arial", 60, "bold"), tags=("word"))
 
 wrong_answer_img = PhotoImage(file="Intermediate/Day31/images/wrong.png")
-wrong_btn = Button(image=wrong_answer_img, highlightthickness=0, command=updateWord)
+wrong_btn = Button(image=wrong_answer_img, highlightthickness=0, command=update_word)
 wrong_btn.grid(row=1, column=0)
 
 correct_answer_img = PhotoImage(file="Intermediate/Day31/images/right.png")
-correct_btn = Button(image=correct_answer_img, highlightthickness=0, command=updateWord)
+correct_btn = Button(image=correct_answer_img, highlightthickness=0, command=update_word)
 correct_btn.grid(row=1, column=1)
 
 window.mainloop()
