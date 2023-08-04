@@ -1,36 +1,30 @@
 from tkinter import *
 import word_generator as wg
-import time
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 526
 BACKGROUND_COLOR = "#B1DDC6"
 TITLE_FONT = ("Arial", 40, "italic")
 WORD_FONT = ("Arial", 60, "bold")
-FRONT_TEXT_COLOR = "black"
-BACK_TEXT_COLOR = "white"
+TEXT_FILL = {wg.ENGLISH: "white", wg.SPANISH: "black"}
 
 word_gen = wg.WordGenerator()
 current_word = word_gen.nextWord()
 current_language = wg.SPANISH
 
 def flip_card():
-    # Remove current content & flip the card.
-    text_color = ""
     global current_language
     if current_language == wg.ENGLISH:
         # Flip to front - Spanish.
         current_language = wg.SPANISH
         canvas.itemconfig(canvas_image, image=card_front_img)
-        text_color = BACK_TEXT_COLOR
     elif current_language == wg.SPANISH:
         # Flip to back - English.
         current_language = wg.ENGLISH
         canvas.itemconfig(canvas_image, image=card_back_img)
-        text_color = FRONT_TEXT_COLOR
-
-    canvas.itemconfig(card_title, text=current_language, fill=text_color)
-    canvas.itemconfig(card_word, text=current_word[current_language], fill=text_color)
+    
+    canvas.itemconfig(card_title, text=current_language, fill=TEXT_FILL[current_language])
+    canvas.itemconfig(card_word, text=current_word[current_language], fill=TEXT_FILL[current_language])
 
 
 # ---   --- UI Setup ---    ---
@@ -45,8 +39,8 @@ canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0)
 card_back_img = PhotoImage(file="Intermediate/Day31/images/card_back.png")
 card_front_img = PhotoImage(file="Intermediate/Day31/images/card_front.png")
 canvas_image = canvas.create_image(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, image=card_front_img)
-card_title = canvas.create_text(WINDOW_WIDTH/2, 150, text=current_language, font=TITLE_FONT, fill=FRONT_TEXT_COLOR)
-card_word = canvas.create_text(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, text=current_word[current_language], font=WORD_FONT, fill=FRONT_TEXT_COLOR)
+card_title = canvas.create_text(WINDOW_WIDTH/2, 150, text=current_language, font=TITLE_FONT, fill=TEXT_FILL[current_language])
+card_word = canvas.create_text(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, text=current_word[current_language], font=WORD_FONT, fill=TEXT_FILL[current_language])
 canvas.grid(row=0, column=0, columnspan=2)
 
 def update_word():
