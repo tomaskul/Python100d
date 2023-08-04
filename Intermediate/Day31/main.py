@@ -26,13 +26,22 @@ def flip_card():
     canvas.itemconfig(card_title, text=current_language, fill=TEXT_FILL[current_language])
     canvas.itemconfig(card_word, text=current_word[current_language], fill=TEXT_FILL[current_language])
 
+def update_word():
+    global current_word, flip_timer
+    current_word = word_gen.nextWord()
+
+    canvas.itemconfig(card_title, text=current_language, fill=TEXT_FILL[current_language])
+    canvas.itemconfig(card_word, text=current_word[current_language], fill=TEXT_FILL[current_language])
+
+    window.after_cancel(flip_timer)
+    flip_timer = window.after(3000, flip_card)
 
 # ---   --- UI Setup ---    ---
 window = Tk()
 window.title("Spanish-English Flash card game")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
-window.after(3000, func=flip_card)
+flip_timer = window.after(3000, func=flip_card)
 
 canvas = Canvas(width=WINDOW_WIDTH, height=WINDOW_HEIGHT)
 canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0)
@@ -42,10 +51,6 @@ canvas_image = canvas.create_image(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, image=card_f
 card_title = canvas.create_text(WINDOW_WIDTH/2, 150, text=current_language, font=TITLE_FONT, fill=TEXT_FILL[current_language])
 card_word = canvas.create_text(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, text=current_word[current_language], font=WORD_FONT, fill=TEXT_FILL[current_language])
 canvas.grid(row=0, column=0, columnspan=2)
-
-def update_word():
-    global current_word
-    current_word = word_gen.nextWord()
 
 wrong_answer_img = PhotoImage(file="Intermediate/Day31/images/wrong.png")
 wrong_btn = Button(image=wrong_answer_img, highlightthickness=0, command=flip_card)
